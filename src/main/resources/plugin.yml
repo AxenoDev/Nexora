@@ -1,0 +1,8 @@
+name: Nexora
+version: '0.0.1'
+main: me.axeno.nexora.Nexora
+api-version: '1.20'
+prefix: Nexora
+authors: [ axenq ]
+description: Nexora est un plugin Minecraft de Warp
+website: https://axeno.me
