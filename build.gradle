@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id "io.freefair.lombok" version "8.4"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
 }
 
 group = 'me.axeno'
@@ -16,14 +18,25 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "axenoReleases"
+        url = "https://mvn.axeno.me/releases/"
+    }
+    maven {
+        name = "jitpack"
+        url = "https://jitpack.io"
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    implementation 'com.github.Revxrsal.Lamp:common:3.2.1'
+    implementation 'com.github.Revxrsal.Lamp:bukkit:3.2.1'
+
+    implementation("me.axeno.xernas:menulib:1.1.0")
+    implementation("de.rapha149.signgui:signgui:2.5.0")
 
     compileOnly("org.jetbrains:annotations:24.0.1")
-    compileOnly("org.projectlombok:lombok:1.18.28")
-    annotationProcessor("org.projectlombok:lombok:1.18.28")
 }
 
 tasks {
@@ -61,3 +74,16 @@ processResources {
         expand props
     }
 }
+
+tasks {
+    build {
+        dependsOn(shadowJar)
+    }
+}
+
+shadowJar {
+    destinationDirectory.set(file("C:\\Users\\tbava\\Desktop\\Dev\\server\\plugins"))
+    archiveFileName = "Nexora.jar"
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
