@@ -1,7 +1,9 @@
 package me.axeno.nexora;
 
 import lombok.Getter;
+import me.axeno.nexora.commands.NexoraCommands;
 import me.axeno.nexora.commands.WarpCommands;
+import me.axeno.nexora.utils.Lang;
 import me.axeno.nexora.utils.message.MessageType;
 import me.axeno.nexora.warp.WarpManager;
 import net.kyori.adventure.text.Component;
@@ -33,6 +35,8 @@ public final class Nexora extends JavaPlugin {
         instance = this;
         this.warpManager = new WarpManager();
 
+        saveDefaultConfig();
+
         handler = BukkitCommandHandler.create(this);
 
         handler.getAutoCompleter().registerSuggestion("warps", (args, sender, command) -> {
@@ -40,9 +44,12 @@ public final class Nexora extends JavaPlugin {
         });
 
         handler.register(
-                new WarpCommands());
+                new WarpCommands(),
+                new NexoraCommands());
 
         handler.getTranslator().setLocale(Locale.FRENCH);
+
+        Lang.load();
         MenuLib.init(this);
 
         getLogger().info("Nexora has been enabled!");

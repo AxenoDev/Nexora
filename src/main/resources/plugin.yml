@@ -7,6 +7,9 @@ authors: [ axenq ]
 description: Nexora est un plugin Minecraft de Warp
 website: https://axeno.me
 permissions:
+  nexora.admin.reload:
+    description: Permission to reload the plugin
+    default: op
   nexora.warp:
     description: Permission to use warp
     default: true

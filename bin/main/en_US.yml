@@ -1,0 +1,79 @@
+# Global
+menu.click_to_select: "&8[&6»&8] &7Left click to select"
+menu.page.previous: "&8[&6«&8] &7Previous page"
+menu.page.next: "&8[&6»&8] &7Next page"
+menu.close: "&8[&c✘&8] &7Close menu"
+menu.search_label: "&8[&6🔎&8] &7Search"
+menu.back: "&8[&6«&8] &7Back"
+
+# Warp Block Menu
+warp.icon.updated: "&aThe warp icon has been successfully updated!"
+warp.icon.error: "&cError while updating the warp icon!"
+menu.warp.block.search.enter_block: "Enter the block name here."
+menu.warp.block.search.searching: "&7Searching: {query}"
+menu.warp.block.search.search: "&7Search"
+menu.warp.block.selected: "&8[&a✔&8] &7Current icon"
+menu.warp.block.title: "&8[&6🔨&8] &7Select icon : {warp.name}"
+menu.warp.block.click_to_search: "&8[&6»&8] &7Left click to search"
+menu.warp.block.click_to_reset: "&8[&6»&8] &7Right click to reset"
+menu.warp.block.sign.line2: "^^^^^^^^^"
+menu.warp.block.sign.line3: "Enter the name"
+menu.warp.block.sign.line4: "of the block here"
+
+# Warp List Menu
+menu.warp.title: "&8[&6✧&8] &7Warps"
+menu.warp.coordinates.name: "  &7Coordinates :"
+menu.warp.coordinates.x: "    &8- &eX: &6{x}"
+menu.warp.coordinates.y: "    &8- &eY: &6{y}"
+menu.warp.coordinates.z: "    &8- &eZ: &6{z}"
+menu.warp.coordinates.world: "  &7World : &6{world}"
+menu.warp.click_to_teleport: "&8[&6»&8] &7Left click to teleport"
+menu.warp.click_to_edit: "&8[&6»&8] &7Right click to edit"
+
+# Warp Menu Delete Confirmation
+menu.warp.delete.title: "&8[&c✘&8] &7Delete warp : {warp.name}"
+menu.warp.delete.confirm.prefix: "&8[&c✘&8] "
+menu.warp.delete.confirm.text: "Confirm deletion"
+menu.warp.delete.confirm.color: 0xF8704D
+menu.warp.delete.cancel.prefix: "&8[&a✔&8] "
+menu.warp.delete.cancel.text: "Cancel deletion"
+menu.warp.delete.cancel.color: 0x55FFAA
+menu.warp.delete.message: "&cWarp {warp.name} has been deleted!"
+
+# Warp Menu Edit
+menu.warp.edit.title: "&8[&6✎&8] &7Edit warp : {warp.name}"
+menu.warp.edit.change.icon.text: "Change icon"
+menu.warp.edit.change.icon.color: 0x55FFAA
+menu.warp.edit.change.name.text: "Change name"
+menu.warp.edit.change.name.color: 0xF8A94D
+menu.warp.edit.change.name.sign.line2: "^^^^^^^^^"
+menu.warp.edit.change.name.sign.line3: "Enter the name"
+menu.warp.edit.change.name.sign.line4: "of the warp here"
+menu.warp.edit.change.name.success: "&aWarp name has been changed to {warp.name}"
+menu.warp.edit.change.name.error: "&cWarp name already exists or is invalid!"
+menu.warp.edit.delete.text: "Delete warp"
+menu.warp.edit.delete.color: 0xF8704D
+
+# Warp Commands Messages
+warp.created: "&aWarp &e{warp.name} &ahas been created."
+warp.exists: "&cWarp &e{warp.name} &calready exists or the name is invalid."
+warp.not_found: "&cWarp &e{warp.name} &cdoes not exist."
+warp.deleted: "&aWarp &e{warp.name} &ahas been deleted."
+warp.deletion_error: "&cAn error occurred while deleting the warp."
+warp.renamed: "&aWarp &e{warp.old_name} &ahas been renamed to &e{warp.new_name}."
+warp.rename_error: "&cWarp does not exist."
+warp.icon.no_item: "&cPlease hold an item in your hand."
+warp.teleport.success.self: "&aYou have been teleported to warp &e{warp.name}&a."
+warp.teleport.success.other: "&a{player} has been teleported to warp &e{warp.name}&a."
+warp.teleport.info.target: "&aYou have been teleported to warp &e{warp.name} &aby {player}."
+warp.teleport.error: "&cWarp &e{warp.name} &cdoes not exist."
+
+# Default Messages
+config.reload.success: "&aThe configuration has been reloaded."
+
+# Warp Teleportation title
+warp.teleport.message.text: "Teleport to "
+warp.teleport.message.color: 0xAAAAAA
+warp.teleport.message.warp.color: 0xF5C542
+warp.teleport.subtitle.text: "Have a great trip and have fun!"
+warp.teleport.subtitle.color: 0x66BB6A

@@ -1,0 +1,27 @@
+# ===================================================================
+#                          Nexora Plugin Configuration
+# ===================================================================
+# 
+#                            C R E D I T S
+# ===================================================================
+# Plugin:   Nexora
+# Developer:     Axeno (axenq)
+# GitHub:       https://github.com/AxenoDev/Nexora
+# Description:   Nexora is a powerful plugin for managing warps 
+#                and teleportation features in Minecraft.
+# 
+# ===================================================================
+#                          C O N F I G U R A T I O N
+# ===================================================================
+# Settings for Nexora Plugin. Customize as needed.
+
+# Language Configuration
+# Specify the default language for the plugin.
+lang: "en_US"  # Available options: "en_US" and "fr_FR"
+
+
+# ===================================================================
+#                          T R O U B L E S H O O T I N G
+# ===================================================================
+# If you encounter any issues, please open an issue on the plugin's 
+# GitHub repository: https://github.com/AxenoDev/Nexora/issues

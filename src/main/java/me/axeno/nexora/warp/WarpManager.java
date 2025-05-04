@@ -2,9 +2,7 @@ package me.axeno.nexora.warp;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.Getter;
 import me.axeno.nexora.Nexora;
+import me.axeno.nexora.utils.Lang;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.sound.Sound.Source;
 import net.kyori.adventure.text.Component;
@@ -96,9 +95,13 @@ public class WarpManager {
             player.playSound(Sound.sound(org.bukkit.Sound.ENTITY_ENDERMAN_TELEPORT, Source.PLAYER, 1.0f, 1.2f));
 
             Title title = Title.title(
-                    Component.text("Téléportation vers ", TextColor.color(0xAAAAAA))
-                            .append(Component.text(warp.getName(), TextColor.color(0xF5C542))),
-                    Component.text("Bon voyage et amuse-toi bien !", TextColor.color(0x66BB6A)));
+                    Component
+                            .text(Lang.get("warp.teleport.message.text"),
+                                    TextColor.color(Lang.getInt("warp.teleport.message.color")))
+                            .append(Component.text(warp.getName(),
+                                    TextColor.color(Lang.getInt("warp.teleport.message.warp.color")))),
+                    Component.text(Lang.get("warp.teleport.subtitle.text"),
+                            TextColor.color(Lang.getInt("warp.teleport.subtitle.color"))));
             player.showTitle(title);
             return true;
         }

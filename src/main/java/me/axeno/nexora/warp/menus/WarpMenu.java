@@ -1,7 +1,6 @@
 package me.axeno.nexora.warp.menus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,15 +10,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import dev.xernas.menulib.PaginatedMenu;
 import dev.xernas.menulib.utils.ItemBuilder;
 import me.axeno.nexora.Nexora;
+import me.axeno.nexora.utils.Lang;
 import me.axeno.nexora.warp.Warp;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 public class WarpMenu extends PaginatedMenu {
 
@@ -32,7 +33,7 @@ public class WarpMenu extends PaginatedMenu {
 
     @Override
     public @NotNull String getName() {
-        return "Warp Menu";
+        return Lang.get("menu.warp.title");
     }
 
     @Override
@@ -49,11 +50,13 @@ public class WarpMenu extends PaginatedMenu {
         Map<Integer, ItemStack> btns = new HashMap<>();
 
         btns.put(45, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(Component.text("§8[§6«§8] §7Page précédente"));
+            itemMeta.displayName(Component.text(Lang.get("menu.page.previous")));
         }).setPreviousPageButton());
-        btns.put(49, new ItemBuilder(this, Material.BARRIER).setCloseButton());
+        btns.put(49, new ItemBuilder(this, Material.BARRIER, itemMeta -> {
+            itemMeta.displayName(Component.text(Lang.get("menu.close")));
+        }).setCloseButton());
         btns.put(53, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(Component.text("§8[§6»§8] §7Page suivante"));
+            itemMeta.displayName(Component.text(Lang.get("menu.page.next")));
         }).setNextPageButton());
 
         return btns;
@@ -67,18 +70,24 @@ public class WarpMenu extends PaginatedMenu {
             ItemStack itemStack = new ItemStack(warp.getItemStack().getType());
 
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.displayName(Component.text("§6" + warp.getName()));
+            itemMeta.displayName(Component.text(warp.getName())
+                    .color(TextColor.color(0xF8C44D))
+                    .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text("  §7Coordonées:"));
-            lore.add(Component.text("    §8- §eX: §6" + String.format("%.0f", warp.getLocation().getX())));
-            lore.add(Component.text("    §8- §eY: §6" + String.format("%.0f", warp.getLocation().getY())));
-            lore.add(Component.text("    §8- §eZ: §6" + String.format("%.0f", warp.getLocation().getZ())));
-            lore.add(Component.text("  §7Monde: §6" + warp.getLocation().getWorld().getName()));
+            lore.add(Component.text(Lang.get("menu.warp.coordinates.name")));
+            lore.add(Component.text(Lang.get("menu.warp.coordinates.x")
+                    .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
+            lore.add(Component.text(Lang.get("menu.warp.coordinates.y")
+                    .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
+            lore.add(Component.text(Lang.get("menu.warp.coordinates.z")
+                    .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
+            lore.add(Component.text(Lang.get("menu.warp.coordinates.world")
+                    .replace("{world}", warp.getLocation().getWorld().getName())));
             lore.add(Component.text("§7"));
-            lore.add(Component.text("§8[§6»§8] §7Clique gauche pour se téléporter"));
+            lore.add(Component.text(Lang.get("menu.warp.click_to_teleport")));
 
             if (getOwner().hasPermission("nexora.warp.admin.edit"))
-                lore.add(Component.text("§8[§6»§8] §7Clique droit pour le modifier"));
+                lore.add(Component.text(Lang.get("menu.warp.click_to_edit")));
             itemMeta.lore(lore);
             itemStack.setItemMeta(itemMeta);
 
