@@ -82,7 +82,7 @@ tasks {
 }
 
 shadowJar {
-    destinationDirectory.set(file("C:\\Users\\tbava\\Desktop\\Dev\\server\\plugins"))
+    destinationDirectory.set(file("builds"))
     archiveFileName = "Nexora.jar"
 }
 
