@@ -27,6 +27,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
 
+    - name: Give execute permission to gradlew
+      run: chmod +x ./gradlew
+
     - name: Install dependencies
       run: ./gradlew build --no-daemon
 
