@@ -120,3 +120,5 @@ runs/
 
 # VSCode
 .vscode/
+.bin/
+.idea/
