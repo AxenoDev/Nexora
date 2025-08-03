@@ -54,7 +54,7 @@ public class WarpManager {
 
                 if (item == null || item.getType() == Material.AIR) {
                     nexora.getLogger()
-                            .warning("Item invalide pour le warp '" + name + "', utilisation de l'item par défaut");
+                            .warning("Invalid item for warp '" + name + "', using default item");
                     item = new ItemStack(Material.RED_BED);
                 }
 
@@ -63,15 +63,15 @@ public class WarpManager {
                     uuid = UUID.fromString(warpId);
                 } catch (IllegalArgumentException e) {
                     uuid = UUID.randomUUID();
-                    nexora.getLogger().info("Génération d'un nouveau UUID pour le warp " + name);
+                    nexora.getLogger().info("Generating a new UUID for warp " + name);
                 }
 
                 Warp warp = new Warp(uuid, name, location, item);
                 warps.put(name.toLowerCase(), warp);
-                nexora.getLogger().info("Warp chargé: " + name + " (ID: " + warpId + ")");
+                nexora.getLogger().info("Warp loaded: " + name + " (ID: " + warpId + ")");
             } catch (Exception e) {
                 nexora.getLogger()
-                        .warning("Erreur lors du chargement du warp avec ID '" + warpId + "': " + e.getMessage());
+                        .warning("Error while loading warp with ID '" + warpId + "': " + e.getMessage());
                 e.printStackTrace();
             }
         }
