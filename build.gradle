@@ -19,10 +19,6 @@ repositories {
         url = "https://oss.sonatype.org/content/groups/public/"
     }
     maven {
-        name = "axenoReleases"
-        url = "https://mvn.axeno.me/releases/"
-    }
-    maven {
         name = "jitpack"
         url = "https://jitpack.io"
     }
@@ -33,7 +29,6 @@ dependencies {
     implementation 'com.github.Revxrsal.Lamp:common:3.2.1'
     implementation 'com.github.Revxrsal.Lamp:bukkit:3.2.1'
 
-    implementation("me.axeno.xernas:menulib:1.1.0")
     implementation("de.rapha149.signgui:signgui:2.5.0")
 
     compileOnly("org.jetbrains:annotations:24.0.1")

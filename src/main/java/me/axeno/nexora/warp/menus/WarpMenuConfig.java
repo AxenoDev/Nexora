@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.axeno.nexora.api.menulib.Menu;
+import me.axeno.nexora.api.menulib.utils.InventorySize;
+import me.axeno.nexora.api.menulib.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -14,9 +17,6 @@ import org.jetbrains.annotations.NotNull;
 
 import de.rapha149.signgui.SignGUI;
 import de.rapha149.signgui.exception.SignGUIVersionException;
-import dev.xernas.menulib.Menu;
-import dev.xernas.menulib.utils.InventorySize;
-import dev.xernas.menulib.utils.ItemBuilder;
 import me.axeno.nexora.Nexora;
 import me.axeno.nexora.utils.Lang;
 import me.axeno.nexora.utils.message.MessageType;

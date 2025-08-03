@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.axeno.nexora.api.menulib.PaginatedMenu;
+import me.axeno.nexora.api.menulib.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -18,8 +20,6 @@ import org.jetbrains.annotations.Nullable;
 
 import de.rapha149.signgui.SignGUI;
 import de.rapha149.signgui.exception.SignGUIVersionException;
-import dev.xernas.menulib.PaginatedMenu;
-import dev.xernas.menulib.utils.ItemBuilder;
 import me.axeno.nexora.Nexora;
 import me.axeno.nexora.utils.Lang;
 import me.axeno.nexora.utils.message.MessageType;

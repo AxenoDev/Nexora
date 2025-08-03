@@ -1,6 +1,7 @@
 package me.axeno.nexora;
 
 import lombok.Getter;
+import me.axeno.nexora.api.menulib.MenuLib;
 import me.axeno.nexora.commands.NexoraCommands;
 import me.axeno.nexora.commands.WarpCommands;
 import me.axeno.nexora.utils.Lang;
@@ -15,8 +16,6 @@ import java.util.Locale;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import dev.xernas.menulib.MenuLib;
 
 public final class Nexora extends JavaPlugin {
 
