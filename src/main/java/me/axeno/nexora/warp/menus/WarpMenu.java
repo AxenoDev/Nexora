@@ -51,13 +51,13 @@ public class WarpMenu extends PaginatedMenu {
         Map<Integer, ItemStack> btns = new HashMap<>();
 
         btns.put(45, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")).decoration(TextDecoration.ITALIC, false));
         }).setPreviousPageButton());
         btns.put(49, new ItemBuilder(this, Material.BARRIER, itemMeta -> {
-            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.close")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.close")).decoration(TextDecoration.ITALIC, false));
         }).setCloseButton());
         btns.put(53, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")).decoration(TextDecoration.ITALIC, false));
         }).setNextPageButton());
 
         return btns;
@@ -75,20 +75,20 @@ public class WarpMenu extends PaginatedMenu {
                     .color(TextColor.color(0xF8C44D))
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")).decoration(TextDecoration.ITALIC, false));
             lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
-                    .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
+                    .replace("{x}", String.format("%.0f", warp.getLocation().getX()))).decoration(TextDecoration.ITALIC, false));
             lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
-                    .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
+                    .replace("{y}", String.format("%.0f", warp.getLocation().getY()))).decoration(TextDecoration.ITALIC, false));
             lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
-                    .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
+                    .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))).decoration(TextDecoration.ITALIC, false));
             lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
-                    .replace("{world}", warp.getLocation().getWorld().getName())));
+                    .replace("{world}", warp.getLocation().getWorld().getName())).decoration(TextDecoration.ITALIC, false));
             lore.add(Component.empty());
-            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_teleport")));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_teleport")).decoration(TextDecoration.ITALIC, false));
 
             if (getOwner().hasPermission("nexora.warp.admin.edit"))
-                lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_edit")));
+                lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_edit")).decoration(TextDecoration.ITALIC, false));
             itemMeta.lore(lore);
             itemStack.setItemMeta(itemMeta);
 

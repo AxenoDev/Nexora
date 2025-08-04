@@ -1,5 +1,6 @@
 package me.axeno.nexora.commands;
 
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +32,7 @@ public class NexoraCommands {
     @Subcommand("help")
     @Description("Show help for warp commands.")
     public void help(@NotNull Player player) {
-        Component title = Component.text("Nexora Warp Commands")
+        Component title = LegacyComponentSerializer.legacySection().deserialize("Nexora Warp Commands")
                 .color(TextColor.color(0x55FFAA))
                 .decorate(TextDecoration.BOLD);
         player.sendMessage(title);
@@ -58,9 +59,9 @@ public class NexoraCommands {
     }
 
     private void sendHelpLine(Player player, String command, String description) {
-        Component commandText = Component.text(command)
+        Component commandText = LegacyComponentSerializer.legacySection().deserialize(command)
                 .color(TextColor.color(0xF8A94D));
-        Component descriptionText = Component.text(" - " + description)
+        Component descriptionText = LegacyComponentSerializer.legacySection().deserialize(" - " + description)
                 .color(TextColor.color(0xFFFFFF));
 
         player.sendMessage(commandText.append(descriptionText));

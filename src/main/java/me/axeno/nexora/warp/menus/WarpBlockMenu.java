@@ -8,6 +8,7 @@ import java.util.Map;
 
 import me.axeno.nexora.api.menulib.PaginatedMenu;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -25,7 +26,6 @@ import me.axeno.nexora.Nexora;
 import me.axeno.nexora.utils.Lang;
 import me.axeno.nexora.utils.message.MessageType;
 import me.axeno.nexora.warp.Warp;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
@@ -67,11 +67,11 @@ public class WarpBlockMenu extends PaginatedMenu {
                         .color(TextColor.color(0x55FFAA))
                         .decoration(TextDecoration.ITALIC, false));
                 if (warp.getItemStack().getType() == material) {
-                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.selected"))));
+                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.selected")).decoration(TextDecoration.ITALIC, false)));
                     meta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
                     meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 } else {
-                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.click_to_select"))));
+                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.click_to_select")).decoration(TextDecoration.ITALIC, false)));
                 }
             });
             CACHED_ITEMS.add(item);
@@ -115,7 +115,7 @@ public class WarpBlockMenu extends PaginatedMenu {
     public Map<Integer, ItemStack> getButtons() {
         Map<Integer, ItemStack> btns = new HashMap<>();
         btns.put(45, new ItemBuilder(this, Material.ARROW, meta -> {
-            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")).decoration(TextDecoration.ITALIC, false));
         }).setPreviousPageButton());
 
         btns.put(47, new ItemBuilder(this, warp.getItemStack(), meta -> {
@@ -124,15 +124,14 @@ public class WarpBlockMenu extends PaginatedMenu {
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
             lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
-            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x").replace("{x}",
-                    String.format("%.0f", warp.getLocation().getX()))));
-            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y").replace("{y}",
-                    String.format("%.0f", warp.getLocation().getY()))));
-            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z").replace("{z}",
-                    String.format("%.0f", warp.getLocation().getZ()))));
-            lore.add(Component
-                    .text(Lang.get("menu.warp.coordinates.world").replace("{world}",
-                            warp.getLocation().getWorld().getName())));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
+                    .replace("{x}", String.format("%.0f", warp.getLocation().getX()))).decoration(TextDecoration.ITALIC, false));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
+                    .replace("{y}", String.format("%.0f", warp.getLocation().getY()))).decoration(TextDecoration.ITALIC, false));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
+                    .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))).decoration(TextDecoration.ITALIC, false));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
+                    .replace("{world}", warp.getLocation().getWorld().getName())).decoration(TextDecoration.ITALIC, false));
             meta.lore(lore);
         }));
 
@@ -143,10 +142,10 @@ public class WarpBlockMenu extends PaginatedMenu {
         btns.put(51, new ItemBuilder(this, Material.OAK_SIGN, meta -> {
             meta.displayName(LegacyComponentSerializer.legacySection().deserialize("§8[§6🔎§8] " +
                     (searchQuery.isEmpty() ? Lang.get("menu.warp.block.search.search")
-                            : Lang.get("menu.warp.block.search.searching").replace("{query}", searchQuery))));
+                            : Lang.get("menu.warp.block.search.searching").replace("{query}", searchQuery))).decoration(TextDecoration.ITALIC, false));
             meta.lore(List.of(
-                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_search")),
-                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_reset"))));
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_search")).decoration(TextDecoration.ITALIC, false),
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_reset")).decoration(TextDecoration.ITALIC, false)));
         }).setOnClick(e -> {
             if (e.isLeftClick()) {
                 SignGUI signGUI;
@@ -185,7 +184,7 @@ public class WarpBlockMenu extends PaginatedMenu {
         }));
 
         btns.put(53, new ItemBuilder(this, Material.ARROW, meta -> {
-            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")).decoration(TextDecoration.ITALIC, false));
         }).setNextPageButton());
 
         return btns;

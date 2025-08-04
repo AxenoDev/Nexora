@@ -43,13 +43,13 @@ public class WarpConfirmDelete extends Menu {
                         List<Component> lore = new ArrayList<>();
                         lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
                         lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
-                                        .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
+                                        .replace("{x}", String.format("%.0f", warp.getLocation().getX()))).decoration(TextDecoration.ITALIC, false));
                         lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
-                                        .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
+                                        .replace("{y}", String.format("%.0f", warp.getLocation().getY()))).decoration(TextDecoration.ITALIC, false));
                         lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
-                                        .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
+                                        .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))).decoration(TextDecoration.ITALIC, false));
                         lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
-                                        .replace("{world}", warp.getLocation().getWorld().getName())));
+                                        .replace("{world}", warp.getLocation().getWorld().getName())).decoration(TextDecoration.ITALIC, false));
                         meta.lore(lore);
                 }));
 
