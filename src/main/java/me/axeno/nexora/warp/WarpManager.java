@@ -3,6 +3,7 @@ package me.axeno.nexora.warp;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -13,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import lombok.Getter;
 import me.axeno.nexora.Nexora;
 import me.axeno.nexora.utils.Lang;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
 
@@ -91,12 +91,10 @@ public class WarpManager {
             player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0f, 1.2f);
 
             Title title = Title.title(
-                    Component
-                            .text(Lang.get("warp.teleport.message.text"),
-                                    TextColor.color(Lang.getInt("warp.teleport.message.color")))
-                            .append(Component.text(warp.getName(),
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("warp.teleport.message.text")).color(TextColor.color(Lang.getInt("warp.teleport.message.color")))
+                            .append(LegacyComponentSerializer.legacySection().deserialize(warp.getName()).color(
                                     TextColor.color(Lang.getInt("warp.teleport.message.warp.color")))),
-                    Component.text(Lang.get("warp.teleport.subtitle.text"),
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("warp.teleport.subtitle.text")).color(
                             TextColor.color(Lang.getInt("warp.teleport.subtitle.color"))));
             player.showTitle(title);
             return true;

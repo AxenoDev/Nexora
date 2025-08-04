@@ -110,8 +110,6 @@ public class WarpConfig {
     public boolean changeWarpIcon(Warp warp, ItemStack item) {
         if (isWarpExists(warp.getId().toString()) && item != null && item.getType() != null) {
             config.set(warp.getId() + ".menu.item", item.serialize());
-            System.out.println("Saving item: " + item.serialize());
-            System.out.println("Warp ID: " + warp.getId());
             saveConfig();
             return true;
         }

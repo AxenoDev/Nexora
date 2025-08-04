@@ -10,6 +10,7 @@ import me.axeno.nexora.warp.WarpManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import revxrsal.commands.bukkit.BukkitCommandHandler;
 
 import java.util.Locale;
@@ -64,13 +65,13 @@ public final class Nexora extends JavaPlugin {
     }
 
     public static void sendMessage(Player player, MessageType type, String content) {
-        Component badge = Component.text("(")
+        Component badge = LegacyComponentSerializer.legacySection().deserialize("(")
                 .color(TextColor.color(0x3A3A3A))
-                .append(Component.text(type.symbol).color(type.color))
-                .append(Component.text(")").color(TextColor.color(0x3A3A3A)))
+                .append(LegacyComponentSerializer.legacySection().deserialize(type.symbol).color(type.color))
+                .append(LegacyComponentSerializer.legacySection().deserialize(")").color(TextColor.color(0x3A3A3A)))
                 .append(Component.space());
 
-        Component arrow = Component.text("»")
+        Component arrow = LegacyComponentSerializer.legacySection().deserialize("»")
                 .color(TextColor.color(0xAAAAAA))
                 .append(Component.space());
 
@@ -79,7 +80,7 @@ public final class Nexora extends JavaPlugin {
                 .append(BASE_PREFIX)
                 .append(Component.space())
                 .append(arrow)
-                .append(Component.text(content).color(TextColor.color(0xFFFFFF)));
+                .append(LegacyComponentSerializer.legacySection().deserialize(content).color(TextColor.color(0xFFFFFF)));
 
         player.sendMessage(message);
         player.playSound(player.getLocation(), type.sound, 1f, 1f);

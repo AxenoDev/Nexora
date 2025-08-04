@@ -10,6 +10,7 @@ import me.axeno.nexora.api.menulib.PaginatedMenu;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -56,14 +57,17 @@ public class WarpBlockMenu extends PaginatedMenu {
             if (!material.isItem() || material.isAir())
                 continue;
 
-            String name = material.name().replace("_", " ").toLowerCase();
+            ItemStack itemStack = new ItemStack(material);
 
-            if (!searchQuery.isEmpty() && !name.contains(searchQuery.toLowerCase())) {
+            String displayName = PlainTextComponentSerializer.plainText().serialize(itemStack.displayName())
+                    .replaceAll("[\\[\\]]", "");
+
+            if (!searchQuery.isEmpty() && !displayName.contains(searchQuery.toLowerCase())) {
                 continue;
             }
 
             ItemStack item = new ItemBuilder(null, material, meta -> {
-                meta.displayName(LegacyComponentSerializer.legacySection().deserialize(name)
+                meta.displayName(LegacyComponentSerializer.legacySection().deserialize(displayName)
                         .color(TextColor.color(0x55FFAA))
                         .decoration(TextDecoration.ITALIC, false));
                 if (warp.getItemStack().getType() == material) {
