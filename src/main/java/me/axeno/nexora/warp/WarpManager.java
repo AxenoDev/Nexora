@@ -1,22 +1,18 @@
 package me.axeno.nexora.warp;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import lombok.Getter;
 import me.axeno.nexora.Nexora;
 import me.axeno.nexora.utils.Lang;
-import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.sound.Sound.Source;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
@@ -49,7 +45,7 @@ public class WarpManager {
 
                 if (warpConfig.config.contains(warpId + ".menu.item")) {
                     item = ItemStack.deserialize(
-                            warpConfig.config.getConfigurationSection(warpId + ".menu.item").getValues(false));
+                            Objects.requireNonNull(warpConfig.config.getConfigurationSection(warpId + ".menu.item")).getValues(false));
                 }
 
                 if (item == null || item.getType() == Material.AIR) {
@@ -72,7 +68,7 @@ public class WarpManager {
             } catch (Exception e) {
                 nexora.getLogger()
                         .warning("Error while loading warp with ID '" + warpId + "': " + e.getMessage());
-                e.printStackTrace();
+                throw new RuntimeException("Error while loading warp with ID '" + warpId + "': " + e.getMessage());
             }
         }
     }
@@ -92,7 +88,7 @@ public class WarpManager {
             player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, location, 60, 0.5, 1, 0.5, 0.1);
             player.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, location, 20, 0.5, 1, 0.5);
 
-            player.playSound(Sound.sound(org.bukkit.Sound.ENTITY_ENDERMAN_TELEPORT, Source.PLAYER, 1.0f, 1.2f));
+            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0f, 1.2f);
 
             Title title = Title.title(
                     Component
