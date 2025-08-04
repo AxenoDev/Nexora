@@ -9,6 +9,7 @@ import java.util.Map;
 import me.axeno.nexora.api.menulib.Menu;
 import me.axeno.nexora.api.menulib.utils.InventorySize;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -39,31 +40,31 @@ public class WarpMenuConfig extends Menu {
         Map<Integer, ItemStack> contents = new HashMap<>();
 
         contents.put(4, new ItemBuilder(this, warp.getItemStack(), meta -> {
-            meta.displayName(Component.text(warp.getName())
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(warp.getName())
                     .color(TextColor.color(0xF8C44D))
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.name")));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.x")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
                     .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.y")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
                     .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.z")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
                     .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.world")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
                     .replace("{world}", warp.getLocation().getWorld().getName())));
             meta.lore(lore);
         }));
 
         contents.put(11, new ItemBuilder(this, Material.ITEM_FRAME, meta -> {
             meta.displayName(
-                    Component.text(Lang.get("menu.warp.edit.change.icon.text"))
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.edit.change.icon.text"))
                             .color(TextColor.color(Lang.getInt("menu.warp.edit.change.icon.color")))
                             .decoration(TextDecoration.ITALIC, false));
         }).setNextMenu(new WarpBlockMenu(getOwner(), warp)));
 
         contents.put(13, new ItemBuilder(this, Material.NAME_TAG, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.warp.edit.change.name.text"))
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.edit.change.name.text"))
                     .color(TextColor.color(Lang.getInt("menu.warp.edit.change.name.color")))
                     .decoration(TextDecoration.ITALIC, false));
         }).setOnClick(e -> {
@@ -101,17 +102,17 @@ public class WarpMenuConfig extends Menu {
         }));
 
         contents.put(15, new ItemBuilder(this, Material.REDSTONE_BLOCK, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.warp.edit.delete.text"))
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.edit.delete.text"))
                     .color(TextColor.color(Lang.getInt("menu.warp.edit.delete.color")))
                     .decoration(TextDecoration.ITALIC, false));
         }).setNextMenu(new WarpConfirmDelete(getOwner(), warp)));
 
         contents.put(18, new ItemBuilder(this, Material.ARROW, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.back")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.back")));
         }).setOnClick(e -> new WarpMenu(getOwner()).open()));
 
         contents.put(22, new ItemBuilder(this, Material.BARRIER, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.close")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.close")));
         }).setCloseButton());
 
         return contents;

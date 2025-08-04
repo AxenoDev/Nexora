@@ -8,6 +8,7 @@ import java.util.Map;
 
 import me.axeno.nexora.api.menulib.PaginatedMenu;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -62,15 +63,15 @@ public class WarpBlockMenu extends PaginatedMenu {
             }
 
             ItemStack item = new ItemBuilder(null, material, meta -> {
-                meta.displayName(Component.text(name)
+                meta.displayName(LegacyComponentSerializer.legacySection().deserialize(name)
                         .color(TextColor.color(0x55FFAA))
                         .decoration(TextDecoration.ITALIC, false));
                 if (warp.getItemStack().getType() == material) {
-                    meta.lore(List.of(Component.text(Lang.get("menu.warp.block.selected"))));
+                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.selected"))));
                     meta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
                     meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 } else {
-                    meta.lore(List.of(Component.text(Lang.get("menu.click_to_select"))));
+                    meta.lore(List.of(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.click_to_select"))));
                 }
             });
             CACHED_ITEMS.add(item);
@@ -114,20 +115,20 @@ public class WarpBlockMenu extends PaginatedMenu {
     public Map<Integer, ItemStack> getButtons() {
         Map<Integer, ItemStack> btns = new HashMap<>();
         btns.put(45, new ItemBuilder(this, Material.ARROW, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.page.previous")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")));
         }).setPreviousPageButton());
 
         btns.put(47, new ItemBuilder(this, warp.getItemStack(), meta -> {
-            meta.displayName(Component.text(warp.getName())
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(warp.getName())
                     .color(TextColor.color(0xF8C44D))
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.name")));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.x").replace("{x}",
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x").replace("{x}",
                     String.format("%.0f", warp.getLocation().getX()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.y").replace("{y}",
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y").replace("{y}",
                     String.format("%.0f", warp.getLocation().getY()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.z").replace("{z}",
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z").replace("{z}",
                     String.format("%.0f", warp.getLocation().getZ()))));
             lore.add(Component
                     .text(Lang.get("menu.warp.coordinates.world").replace("{world}",
@@ -136,16 +137,16 @@ public class WarpBlockMenu extends PaginatedMenu {
         }));
 
         btns.put(49, new ItemBuilder(this, Material.BARRIER, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.close")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.close")));
         }).setCloseButton());
 
         btns.put(51, new ItemBuilder(this, Material.OAK_SIGN, meta -> {
-            meta.displayName(Component.text("§8[§6🔎§8] " +
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize("§8[§6🔎§8] " +
                     (searchQuery.isEmpty() ? Lang.get("menu.warp.block.search.search")
                             : Lang.get("menu.warp.block.search.searching").replace("{query}", searchQuery))));
             meta.lore(List.of(
-                    Component.text(Lang.get("menu.warp.block.click_to_search")),
-                    Component.text(Lang.get("menu.warp.block.click_to_reset"))));
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_search")),
+                    LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.block.click_to_reset"))));
         }).setOnClick(e -> {
             if (e.isLeftClick()) {
                 SignGUI signGUI;
@@ -184,7 +185,7 @@ public class WarpBlockMenu extends PaginatedMenu {
         }));
 
         btns.put(53, new ItemBuilder(this, Material.ARROW, meta -> {
-            meta.displayName(Component.text(Lang.get("menu.page.next")));
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")));
         }).setNextPageButton());
 
         return btns;

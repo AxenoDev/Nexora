@@ -8,6 +8,7 @@ import java.util.Map;
 import me.axeno.nexora.api.menulib.Menu;
 import me.axeno.nexora.api.menulib.utils.InventorySize;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -36,25 +37,25 @@ public class WarpConfirmDelete extends Menu {
                 Map<Integer, ItemStack> contents = new HashMap<>(fill(Material.GRAY_STAINED_GLASS_PANE));
 
                 contents.put(4, new ItemBuilder(this, warp.getItemStack(), meta -> {
-                        meta.displayName(Component.text(warp.getName())
+                        meta.displayName(LegacyComponentSerializer.legacySection().deserialize(warp.getName())
                                         .color(TextColor.color(0xF8C44D))
                                         .decoration(TextDecoration.ITALIC, false));
                         List<Component> lore = new ArrayList<>();
-                        lore.add(Component.text(Lang.get("menu.warp.coordinates.name")));
-                        lore.add(Component.text(Lang.get("menu.warp.coordinates.x")
+                        lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
+                        lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
                                         .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
-                        lore.add(Component.text(Lang.get("menu.warp.coordinates.y")
+                        lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
                                         .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
-                        lore.add(Component.text(Lang.get("menu.warp.coordinates.z")
+                        lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
                                         .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
-                        lore.add(Component.text(Lang.get("menu.warp.coordinates.world")
+                        lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
                                         .replace("{world}", warp.getLocation().getWorld().getName())));
                         meta.lore(lore);
                 }));
 
                 contents.put(2, new ItemBuilder(this, Material.RED_STAINED_GLASS_PANE, meta -> {
-                        meta.displayName(Component.text(Lang.get("menu.warp.delete.confirm.prefix"))
-                                        .append(Component.text(Lang.get("menu.warp.delete.confirm.text"))
+                        meta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.delete.confirm.prefix"))
+                                        .append(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.delete.confirm.text"))
                                                         .color(TextColor.color(
                                                                         Lang.getInt("menu.warp.delete.confirm.color"))))
                                         .decoration(TextDecoration.ITALIC, false));
@@ -67,8 +68,8 @@ public class WarpConfirmDelete extends Menu {
 
                 contents.put(6, new ItemBuilder(this, Material.GREEN_STAINED_GLASS_PANE, meta -> {
                         meta.displayName(
-                                        Component.text(Lang.get("menu.warp.delete.cancel.prefix"))
-                                                        .append(Component.text(Lang.get("menu.warp.delete.cancel.text"))
+                                        LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.delete.cancel.prefix"))
+                                                        .append(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.delete.cancel.text"))
                                                                         .color(TextColor.color(Lang.getInt(
                                                                                         "menu.warp.delete.cancel.color"))))
                                                         .decoration(TextDecoration.ITALIC, false));

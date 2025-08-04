@@ -7,6 +7,7 @@ import java.util.Map;
 
 import me.axeno.nexora.api.menulib.PaginatedMenu;
 import me.axeno.nexora.api.menulib.utils.ItemBuilder;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -50,13 +51,13 @@ public class WarpMenu extends PaginatedMenu {
         Map<Integer, ItemStack> btns = new HashMap<>();
 
         btns.put(45, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(Component.text(Lang.get("menu.page.previous")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.previous")));
         }).setPreviousPageButton());
         btns.put(49, new ItemBuilder(this, Material.BARRIER, itemMeta -> {
-            itemMeta.displayName(Component.text(Lang.get("menu.close")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.close")));
         }).setCloseButton());
         btns.put(53, new ItemBuilder(this, Material.ARROW, itemMeta -> {
-            itemMeta.displayName(Component.text(Lang.get("menu.page.next")));
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.page.next")));
         }).setNextPageButton());
 
         return btns;
@@ -70,24 +71,24 @@ public class WarpMenu extends PaginatedMenu {
             ItemStack itemStack = new ItemStack(warp.getItemStack().getType());
 
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.displayName(Component.text(warp.getName())
+            itemMeta.displayName(LegacyComponentSerializer.legacySection().deserialize(warp.getName())
                     .color(TextColor.color(0xF8C44D))
                     .decoration(TextDecoration.ITALIC, false));
             List<Component> lore = new ArrayList<>();
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.name")));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.x")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.name")));
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.x")
                     .replace("{x}", String.format("%.0f", warp.getLocation().getX()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.y")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.y")
                     .replace("{y}", String.format("%.0f", warp.getLocation().getY()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.z")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.z")
                     .replace("{z}", String.format("%.0f", warp.getLocation().getZ()))));
-            lore.add(Component.text(Lang.get("menu.warp.coordinates.world")
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.coordinates.world")
                     .replace("{world}", warp.getLocation().getWorld().getName())));
-            lore.add(Component.text("§7"));
-            lore.add(Component.text(Lang.get("menu.warp.click_to_teleport")));
+            lore.add(Component.empty());
+            lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_teleport")));
 
             if (getOwner().hasPermission("nexora.warp.admin.edit"))
-                lore.add(Component.text(Lang.get("menu.warp.click_to_edit")));
+                lore.add(LegacyComponentSerializer.legacySection().deserialize(Lang.get("menu.warp.click_to_edit")));
             itemMeta.lore(lore);
             itemStack.setItemMeta(itemMeta);
 
