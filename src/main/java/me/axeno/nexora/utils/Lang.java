@@ -55,7 +55,6 @@ public class Lang {
     public static Locale getLocale() {
         String langCode = Nexora.getInstance().getConfig().getString("lang", "en_US");
         String[] parts = langCode.split("_");
-        System.out.println(new Locale(parts[0], parts[1]).toString());
         if (parts.length == 2) {
             return new Locale(parts[0], parts[1]);
         } else {

@@ -62,7 +62,7 @@ public class WarpBlockMenu extends PaginatedMenu {
             String displayName = PlainTextComponentSerializer.plainText().serialize(itemStack.displayName())
                     .replaceAll("[\\[\\]]", "");
 
-            if (!searchQuery.isEmpty() && !displayName.contains(searchQuery.toLowerCase())) {
+            if (!searchQuery.isEmpty() && !displayName.toLowerCase().contains(searchQuery.toLowerCase())) {
                 continue;
             }
 
