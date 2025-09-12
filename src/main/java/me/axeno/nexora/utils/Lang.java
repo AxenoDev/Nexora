@@ -2,6 +2,7 @@ package me.axeno.nexora.utils;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -48,6 +49,17 @@ public class Lang {
             }
         } catch (NumberFormatException e) {
             return 0;
+        }
+    }
+
+    public static Locale getLocale() {
+        String langCode = Nexora.getInstance().getConfig().getString("lang", "en_US");
+        String[] parts = langCode.split("_");
+        System.out.println(new Locale(parts[0], parts[1]).toString());
+        if (parts.length == 2) {
+            return new Locale(parts[0], parts[1]);
+        } else {
+            return Locale.ENGLISH;
         }
     }
 }

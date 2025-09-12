@@ -47,10 +47,10 @@ public final class Nexora extends JavaPlugin {
                 new WarpCommands(),
                 new NexoraCommands());
 
-        handler.getTranslator().setLocale(Locale.FRENCH);
-
         Lang.load();
         MenuLib.init(this);
+
+        handler.getTranslator().setLocale(Lang.getLocale());
 
         getLogger().info("Nexora has been enabled!");
     }
